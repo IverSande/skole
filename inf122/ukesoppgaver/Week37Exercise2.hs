@@ -85,11 +85,7 @@ groupByThousands a = chunksOf 3 (digits a)
 to Just xs -}
 zeroToNothing :: [[Integer]] -> [Maybe [Integer]]
 zeroToNothing a = map addJustOrNothing a
-  {--case( filter (\x -> all (==0) x) a == []) of
-    True -> map (Just) (filter (\x -> sum x /= 0) a) 
-    True -> map addJustOrNothing a
-    False -> [Nothing]
-  --}
+
 
 addJustOrNothing :: [Integer] -> Maybe [Integer]
 addJustOrNothing a = 
