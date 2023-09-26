@@ -30,9 +30,10 @@ countHelper (x:y:xs) length counter = if x /= y
 
 caesar :: Alphabet -> Integer -> Key
 caesar alphabet shift = zip alphabet (caesarHelper alphabet shift)
-
+--TODO write a check for if the amont of shift is bigger than the whole alphabet, use modulo length of alphabet
 caesarHelper :: Alphabet -> Integer -> Alphabet
-caesarHelper a i = snd(splitAt (fromIntegral i) a) ++ fst(splitAt (fromIntegral i) a)
+caesarHelper a i = snd(splitAt (fromIntegral q) a) ++ fst(splitAt (fromIntegral q) a)
+  where q = mod i (toInteger $ length a)
 
 loadFrequencyTable :: FilePath -> IO FrequencyTable
 loadFrequencyTable file = do
@@ -40,7 +41,7 @@ loadFrequencyTable file = do
                             return $ count a
 
 initialGuess :: FrequencyTable -> FrequencyTable -> Key
-initialGuess model observation = zipWith (\(x,b) (y,c) -> (x,y)) (sortBy (compare `on` snd) model) (sortBy (compare `on` snd) observation)
+initialGuess model observation = zipWith (\(x,b) (y,c) -> (x,y)) (sortBy (flip compare `on` snd) model) (sortBy (flip compare `on` snd) observation)
 
 chiSquared :: FrequencyTable -> FrequencyTable -> Double
 chiSquared model observation = chiHelper model observation (Set.toList( Set.fromList ((map (\(x, y) -> x) model) ++ (map (\(x,y) -> x) observation))))
@@ -58,7 +59,7 @@ chiHelperHelper model observation c = if (isJust $ lookup c model) && (isJust $ 
                                            else ((((fromJust (lookup c observation)) - (1/10000))**2) / (1/10000))
 
 neighbourKeys :: Key -> [Key]
-neighbourKeys (x:y:xs) = swapEntries
+neighbourKeys (x:y:xs) = undefined
 
 swapEntries ::  Eq a => (a,a) -> (a,a) -> [(a,a)] -> [(a,a)]
 swapEntries (c1, e1) (c2, e2) [k] = swapEntriesHelper (c1, e1) (c2, e2) k
