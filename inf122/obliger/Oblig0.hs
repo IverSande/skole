@@ -30,7 +30,7 @@ countHelper (x:y:xs) length counter = if x /= y
 
 caesar :: Alphabet -> Integer -> Key
 caesar alphabet shift = zip alphabet (caesarHelper alphabet shift)
---TODO write a check for if the amont of shift is bigger than the whole alphabet, use modulo length of alphabet
+
 caesarHelper :: Alphabet -> Integer -> Alphabet
 caesarHelper a i = snd(splitAt (fromIntegral q) a) ++ fst(splitAt (fromIntegral q) a)
   where q = mod i (toInteger $ length a)
@@ -59,7 +59,21 @@ chiHelperHelper model observation c = if (isJust $ lookup c model) && (isJust $ 
                                            else ((((fromJust (lookup c observation)) - (1/10000))**2) / (1/10000))
 
 neighbourKeys :: Key -> [Key]
-neighbourKeys (x:y:xs) = undefined
+neighbourKeys key = neighbourKeysMid key key 0
+
+neighbourKeysMid :: Key -> Key -> Int -> [Key]
+neighbourKeysMid _ [x] _ = []
+neighbourKeysMid key (x:xs) a = (headKey : neighbourKeysHelper 0 (head tailKey) tailKey) ++ neighbourKeysMid key xs (a+1)
+  where headKey = fst(splitAt a key); tailKey = snd(splitAt a key) 
+
+neighbourKeysHelper :: Int -> (Char,Char) -> Key -> [Key] 
+neighbourKeysHelper a (b,c) fullKey = if((b,c)== last fullKey) then [] else neighbourKeysHelperHelper (b,c) fullKey a ++ if(a==length fullKey - 1) then [] else neighbourKeysHelper (a+1) (b,c) fullKey
+
+neighbourKeysHelperHelper :: (Char,Char) -> Key -> Int -> [Key]
+neighbourKeysHelperHelper (c,b) fullKey a = 
+    if((c,b) == last fullKey || (c,b) == head (snd(splitAt a fullKey))) 
+    then []  
+    else [swapEntries (c,b) (head (snd(splitAt a fullKey))) fullKey] 
 
 swapEntries ::  Eq a => (a,a) -> (a,a) -> [(a,a)] -> [(a,a)]
 swapEntries (c1, e1) (c2, e2) [k] = swapEntriesHelper (c1, e1) (c2, e2) k
