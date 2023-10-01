@@ -47,7 +47,7 @@ chiSquared :: FrequencyTable -> FrequencyTable -> Double
 chiSquared model observation = chiHelper model observation (Set.toList( Set.fromList ((map (\(x, y) -> x) model) ++ (map (\(x,y) -> x) observation))))
 
 chiHelper :: FrequencyTable -> FrequencyTable -> [Char] -> Double
-chiHelper model observation [c] = chiHelperHelper model observation c
+chiHelper _ _ [] = 0
 chiHelper model observation (c:cs) = chiHelperHelper model observation c + chiHelper model observation cs
 
 chiHelperHelper :: FrequencyTable -> FrequencyTable -> Char -> Double
@@ -58,16 +58,17 @@ chiHelperHelper model observation c = if (isJust $ lookup c model) && (isJust $ 
                                            then ((((1/10000) - fromJust (lookup c model))**2) / fromJust (lookup c model))
                                            else ((((fromJust (lookup c observation)) - (1/10000))**2) / (1/10000))
 
+--superteit maate, maybe refactor: unless because no duplicates, but seems overengineered
 neighbourKeys :: Key -> [Key]
 neighbourKeys key = neighbourKeysMid key key 0
 
 neighbourKeysMid :: Key -> Key -> Int -> [Key]
 neighbourKeysMid _ [x] _ = []
-neighbourKeysMid key (x:xs) a = (headKey : neighbourKeysHelper 0 (head tailKey) tailKey) ++ neighbourKeysMid key xs (a+1)
-  where headKey = fst(splitAt a key); tailKey = snd(splitAt a key) 
+neighbourKeysMid key (x:xs) a = (map (fst(splitAt a key) ++) (neighbourKeysHelper 0 (head tailKey) tailKey)) ++ neighbourKeysMid key xs (a+1)
+  where tailKey = snd(splitAt a key) 
 
 neighbourKeysHelper :: Int -> (Char,Char) -> Key -> [Key] 
-neighbourKeysHelper a (b,c) fullKey = if((b,c)== last fullKey) then [] else neighbourKeysHelperHelper (b,c) fullKey a ++ if(a==length fullKey - 1) then [] else neighbourKeysHelper (a+1) (b,c) fullKey
+neighbourKeysHelper a (b,c) fullKey = if(length fullKey == 1 || length fullKey == a) then [] else neighbourKeysHelperHelper (b,c) fullKey a ++ neighbourKeysHelper (a+1) (b,c) fullKey
 
 neighbourKeysHelperHelper :: (Char,Char) -> Key -> Int -> [Key]
 neighbourKeysHelperHelper (c,b) fullKey a = 
@@ -75,21 +76,30 @@ neighbourKeysHelperHelper (c,b) fullKey a =
     then []  
     else [swapEntries (c,b) (head (snd(splitAt a fullKey))) fullKey] 
 
-swapEntries ::  Eq a => (a,a) -> (a,a) -> [(a,a)] -> [(a,a)]
+swapEntries ::  Eq a => (a,b) -> (a,b) -> [(a,b)] -> [(a,b)]
 swapEntries (c1, e1) (c2, e2) [k] = swapEntriesHelper (c1, e1) (c2, e2) k
 swapEntries (c1, e1) (c2, e2) (key:keys) = swapEntriesHelper (c1, e1) (c2, e2) key ++ swapEntries (c1,e1) (c2,e2) keys
 
-swapEntriesHelper :: Eq a => (a,a) -> (a,a) -> (a,a) -> [(a,a)]
+swapEntriesHelper :: Eq a => (a,b) -> (a,b) -> (a,b) -> [(a,b)]
 swapEntriesHelper (c1, e1) (c2, e2) (c3, e3) = if  c3==c1 then [(c1,e2)] else if c3==c2 then [(c2,e1)] else [(c3,e3)]
 
 greedy :: FrequencyTable -> String -> Key -> Key
-greedy model cipherText initKey = undefined
+greedy model cipherText initKey = greedyHelper model cipherText initKey (neighbourKeys initKey) (chiSquared model (count $ decode initKey cipherText))
+
+greedyHelper :: FrequencyTable -> String -> Key -> [Key] -> Double -> Key
+greedyHelper _ _ bestKey [] _ = bestKey 
+greedyHelper model cipherText bestKey (x:xs) accuracy = if (newAcc < accuracy) 
+                                                          then greedyHelper model cipherText x xs newAcc
+                                                          else greedyHelper model cipherText bestKey xs accuracy
+  where newAcc = chiSquared  model (count $ decode x cipherText)
 
 loadDictionary :: FilePath -> IO Dictionary
-loadDictionary fil = undefined
+loadDictionary file = do
+                            a <- readFile file
+                            return $ Set.fromList $ words a
 
 countValidWords :: Dictionary -> String -> Integer
-countValidWords dict = undefined
+countValidWords dict stringput = toInteger $ length $ filter (\x -> Set.member x dict) (words stringput)
 
 greedyDict :: Dictionary -> String -> Key -> Key
 greedyDict dict cipherText initKey = undefined
