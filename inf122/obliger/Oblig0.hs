@@ -55,7 +55,7 @@ chiHelperHelper model observation c = if (isJust $ lookup c model) && (isJust $ 
                                        then ((((fromJust (lookup c observation)) - (fromJust  (lookup c model)))**2) / fromJust (lookup c model))
                                        else 
                                          if (isJust $ lookup c model) 
-                                           then ((((1/10000) - fromJust (lookup c model))**2) / fromJust (lookup c model))
+                                           then 0--((((1/10000) - fromJust (lookup c model))**2) / fromJust (lookup c model))
                                            else ((((fromJust (lookup c observation)) - (1/10000))**2) / (1/10000))
 
 --superteit maate, maybe refactor: unless because no duplicates, but seems overengineered
@@ -89,7 +89,7 @@ greedy model cipherText initKey = greedyHelper model cipherText initKey (neighbo
 greedyHelper :: FrequencyTable -> String -> Key -> [Key] -> Double -> Key
 greedyHelper _ _ bestKey [] _ = bestKey 
 greedyHelper model cipherText bestKey (x:xs) accuracy = if (newAcc < accuracy) 
-                                                          then greedyHelper model cipherText x xs newAcc
+                                                          then greedyHelper model cipherText x (neighbourKeys x) newAcc
                                                           else greedyHelper model cipherText bestKey xs accuracy
   where newAcc = chiSquared  model (count $ decode x cipherText)
 
@@ -102,5 +102,24 @@ countValidWords :: Dictionary -> String -> Integer
 countValidWords dict stringput = toInteger $ length $ filter (\x -> Set.member x dict) (words stringput)
 
 greedyDict :: Dictionary -> String -> Key -> Key
-greedyDict dict cipherText initKey = undefined
+greedyDict dict cipherText initKey = greedyDictHelper dict cipherText initKey (neighbourKeys initKey) (countValidWords dict (decode initKey cipherText)) 
+
+greedyDictHelper :: Dictionary -> String -> Key -> [Key] -> Integer -> Key
+greedyDictHelper _ _ bestKey [] _ = bestKey
+greedyDictHelper dict cipherText bestKey (x:xs) accuracy = if(newAcc > accuracy)
+                                                             then greedyDictHelper dict cipherText x (neighbourKeys x) newAcc
+                                                             else greedyDictHelper dict cipherText bestKey xs accuracy
+ where newAcc = countValidWords dict (decode x cipherText)
+
+
+
+
+
+
+
+
+
+
+
+
 
