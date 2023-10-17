@@ -44,7 +44,7 @@ initialGuess :: FrequencyTable -> FrequencyTable -> Key
 initialGuess model observation = zipWith (\(x,b) (y,c) -> (x,y)) (sortBy (flip compare `on` snd) model) (sortBy (flip compare `on` snd) observation)
 
 chiSquared :: FrequencyTable -> FrequencyTable -> Double
-chiSquared model observation = chiHelper model observation (Set.toList( Set.fromList ((map (\(x, y) -> x) model) ++ (map (\(x,y) -> x) observation))))
+chiSquared model observation = chiHelper model observation (Set.toList( Set.fromList ((map (\(x, y) -> x) observation) ++ (map (\(x,y) -> x) model))))
 
 chiHelper :: FrequencyTable -> FrequencyTable -> [Char] -> Double
 chiHelper _ _ [] = 0
@@ -54,10 +54,11 @@ chiHelperHelper :: FrequencyTable -> FrequencyTable -> Char -> Double
 chiHelperHelper model observation c = if (isJust $ lookup c model) && (isJust $ lookup c observation)
                                        then ((((fromJust (lookup c observation)) - (fromJust  (lookup c model)))**2) / fromJust (lookup c model))
                                        else 
-                                         if (isJust $ lookup c model) 
-                                           then 0--((((1/10000) - fromJust (lookup c model))**2) / fromJust (lookup c model))
-                                           else ((((fromJust (lookup c observation)) - (1/10000))**2) / (1/10000))
-
+                                         if (isJust $ lookup c observation) 
+                                           then ((((fromJust (lookup c observation)) - (1/10000))**2) / (1/10000))
+                                           else ((0 - fromJust (lookup c model))**2 / (fromJust (lookup c model)))
+ 
+                                         
 --superteit maate, maybe refactor: unless because no duplicates, but seems overengineered
 neighbourKeys :: Key -> [Key]
 neighbourKeys key = neighbourKeysMid key key 0
