@@ -1,0 +1,8 @@
+Task 0 :
+Good bash script, you should use quotes around variables like you did in line 24 ("$filename") all the places you use them other than that great job
+Task 1 - 2 : 
+Good job, good practice to write English comments
+Task 3 : 
+Some calculation mistakes, and missing a gantt chart to visualize how long the task wait and compute (maybe a corrolation here)
+
+Overall good, some mistakes made by rushing in task 3, good job

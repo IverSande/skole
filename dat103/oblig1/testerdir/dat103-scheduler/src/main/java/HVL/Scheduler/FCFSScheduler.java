@@ -33,6 +33,7 @@ public class FCFSScheduler implements Scheduler {
     
     @Override
     public void schedule() {
+	
         if(selected == null) {
             selected = ready.poll();
             if(selected == null) {
@@ -45,10 +46,8 @@ public class FCFSScheduler implements Scheduler {
                 selected.stop();
                 selected = null;
                 schedule();
-                // More left
             }
         }
-
     }
 
 }

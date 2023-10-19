@@ -1,0 +1,6 @@
+Task 0 : 
+Good job with the script, maybe you could make it a bit better with one less loop? :)
+Task 1-2 : Good
+Task 3 : Good
+
+Overall great job, it is good to use English comments in your code other than that very good

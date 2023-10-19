@@ -1,0 +1,7 @@
+Remember that this is meant to run on linux, 
+and the gradle run does not work on linux, you need 
+./gradlew run. Also remember the #!/bin/bash at the 
+begining of a shell file. Other than that the script works
+as intended.  Task 3 is allright, maybe use differing 
+colors when waiting and running the readability is not very
+good

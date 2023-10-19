@@ -1,35 +1,26 @@
 #!/bin/bash
 
-# Directory for process log files
-DIR="example-process-view"
+# Create the example-process-view directory if it doesn't exist
+mkdir -p example-process-view
 
-# Clean up and create directory
-rm -rf "$DIR"
-mkdir -p "$DIR"
+# Clean up old files in the example-process-view directory
+rm -f example-process-view/T*-proc.log
 
-# Debug: Echo to ensure the script is running
-echo "Script is running..."
+# Regular expression for parsing lines
+info_regex='T=([0-9]+) Scheduled: T([0-9]+) Ready: (.*)'
 
-# Execute the Java program and process its output
-./gradlew run | while read -r line ; do
-    # Debug: Print line to verify if it’s reading the output
-    echo "Read Line: $line"
-    
-    # Extract the scheduled task number
-    scheduled=$(echo "$line" | sed -n 's/.*Scheduled: T\([0-9]\+\).*/\1/p')
-    
-    # Debug: Print Scheduled task
-    echo "Scheduled Task: T$scheduled"
+# Execute the SimulationExample.java program and process its output
+./gradlew run -q | while read -r line; do
+    # Check if the line indicates a scheduled task
+    if [[ "$line" =~ $info_regex ]]; then
+        step_number="${BASH_REMATCH[1]}"
+        process_number="${BASH_REMATCH[2]}"
+        ready_tasks="${BASH_REMATCH[3]}"
 
-    # Extract the ready tasks and create their log files
-    echo "$line" | sed -n 's/.*Ready: \(.*\)$/\1/p' | grep -o 'T[0-9]\+' | while read -r task; do
-        # Debug: Print task that is ready
-        echo "Task Ready: $task"
-        touch "$DIR/$task-proc.log"
-    done
-
-    # If there is a scheduled task, append "work" to its file
-    if [ -n "$scheduled" ]; then
-        echo "work" >> "$DIR/T$scheduled-proc.log"
+        # Create corresponding log file for the scheduled task
+        filename="example-process-view/T${process_number}-proc.log"
+        
+        # Append "work" line to the file
+        echo "work" >> "$filename"
     fi
 done

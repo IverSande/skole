@@ -1,0 +1,10 @@
+Task 0 :
+No need to cd into a directory and definetely no need for me
+to see the path to your dat 103 folder. The rest of the script
+is good, however it seems that you append a space to the
+last time you call file 8 and make an extra file for task 8.
+It is a good habit to make english comments in your code.
+Task 1-2 :
+Good
+Task 3 :
+Good
