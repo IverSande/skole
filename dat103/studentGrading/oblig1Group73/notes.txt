@@ -1,0 +1,5 @@
+Task 0: your if statement is not working and the code is not going in there, it looks like you almost got there
+Task 1-2: Good job
+Task 3 : You are looking at the wrong scheduling, you are supposed to look at the ones from task 2 but you understood the scheduling so its ok
+
+Good job overall, you should really take a look over your bash script but it is good enough

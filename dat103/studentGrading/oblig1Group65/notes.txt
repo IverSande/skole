@@ -1,0 +1,5 @@
+Task 0 : You can remove the entire last for loop in the code to make the extra unnecasarry files go away, and you parse the line with a task going and no waiting wrong which is why you get an extra file called TT=26 Schedule.....
+Task 1-2 : Good job
+Task 3 : You have some counting errors in the round robin task but looks like you just didnt take enough time to go through since your drawing and numbers dont match up
+
+You should take a good look over the bash script and be sure you understand round robin but overall good enough, approved

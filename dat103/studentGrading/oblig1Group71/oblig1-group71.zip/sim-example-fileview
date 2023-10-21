@@ -1,0 +1,21 @@
+
+#!/bin/bash
+
+monitor_java_output() {
+
+java SimulationExample > output.log &
+
+java_pid=$!
+
+ while true; do
+
+if ! ps -p $java_pid > /dev/null; then
+            echo "Java program has exited."
+            break
+        fi
+ tail -n 1 output.log
+  sleep 2
+    done
+}
+
+

@@ -1,0 +1,5 @@
+Task 0 : You can remove the last loop in the script, this just makes duplicates. You also dont parse The lines with only a task working and no que, this makes it so that task 8 only has 3 and not 4 in it.
+Task 1-2 : Good job
+Task 3 : Good job
+
+Overall good job, maybe take a look over the bash but thats it. Also fun with drawing and progress bar

@@ -1,0 +1,8 @@
+Task 0 : You are missing the last step off work in the task 8, maybe because you dont have the complete regexp so the program ignores the last one with nothing on ready
+Task 1-2 : Good job
+Task 3 : You have misinterpereded the task, you are supposed to write the chart for the entire running of simluation test, from task 1 to 10
+
+Overall it is good enough, but be carefull to read the entire task, you handed in the wrong files and didnt do task 3 correct
+
+
+

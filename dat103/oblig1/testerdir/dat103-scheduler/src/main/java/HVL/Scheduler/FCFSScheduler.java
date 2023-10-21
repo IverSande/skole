@@ -33,21 +33,30 @@ public class FCFSScheduler implements Scheduler {
     
     @Override
     public void schedule() {
-	
-        if(selected == null) {
+        // Task 1: Complete the implementation of First Come First Serve scheduling
+        // Sjekker om det ikke er noen aktiv prosess for øyeblikket
+        if (selected == null) {
+            // Dersom ingen prosesser er valgt, forsøker den å hente den første prosessen i køen
             selected = ready.poll();
-            if(selected == null) {
+            // Dersom det ikke er flere prosesser i køen -> avslutt metode
+            if (selected == null) {
                 return;
             }
+            // Starter den valgte prosessen
             selected.start();
         } else {
-            // Complete:
+            // Complete: 
+            // Sjekker om den valgte prosessen er ferdig
             if (selected.isDone()) {
+                // Stopper den valgte prosessen
                 selected.stop();
+                // Setter den valgte prosessen til null for å indikere at den er ferdig
                 selected = null;
+                // Kaller schedule()-metoden på nytt for å velge en ny prosess til å kjøre
                 schedule();
             }
         }
     }
+
 
 }

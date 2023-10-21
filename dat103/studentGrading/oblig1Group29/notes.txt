@@ -1,0 +1,2 @@
+Task 0 : This does not run because of the filedestination you have hardcoded in, you can use the foldername you want to make with no filepath going further back. So replacing it with just 'example-process-view' fixes it. I recomend using shell checker too see through your script for small errors
+Task 1-2 : 

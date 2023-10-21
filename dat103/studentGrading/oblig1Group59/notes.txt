@@ -1,0 +1,5 @@
+Task 0 : The program does not run (on ubuntu 22) with multiple error messages, see attachement
+Task 1-2 : Good job
+Task 3 : A task waits when it is in the que and is not bursting, so for instance, task 3 waits for 3 before it is run, then waits for 6 more before it finishes giving it a waiting time of 9, you have very large numbers in task 3 round robin that dont match the actual waiting time
+
+Overall this is not good enough with 2/4 you need too test the bash on a linux install and be sure it runs and redo task 3

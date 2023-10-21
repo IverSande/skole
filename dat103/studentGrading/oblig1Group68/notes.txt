@@ -1,0 +1,5 @@
+Task 0 : You missed the last work in task 8, probably because you dont check when you have nothing in the ready que
+Task 1 - 2 : Good job
+Task 3 : You have missinterpereted how to count in the round robin, for task 3 it arrives at 0, waits till 3 then runs 3 then task 4 and 5 runs 3 and then 3 finishes thereby waiting for 9 time units
+
+Overall good job but take a look at how round robin works

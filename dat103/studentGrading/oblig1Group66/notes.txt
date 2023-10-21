@@ -1,0 +1,5 @@
+Task 0 : You need to see through and do this task again, funny comments only get you so far
+Task 1-2 : Good job
+Task 3 : Good job
+
+Overall good job on the latter tasks, but you need to complete the bash at least parsing the lines and showing something

@@ -1,0 +1,6 @@
+Task 0 : Seems like you lost the last line of work in task 8, you should use the regexp you got at the sed command to parse the lines
+Task 1 : Indentation makes it hard too read, and you dont need a second test in the else of the schedule
+Task 2 : Good
+Task 3 : 9 + 16 + 7 is not 25 but it is still the task with the longest wait, so right conclution
+
+Overall good job, some oversights but approved

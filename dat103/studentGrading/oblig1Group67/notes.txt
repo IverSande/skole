@@ -1,0 +1,5 @@
+Task 0 : You have failed to make the files in the directory, it seems like you never get into the if statement because you see the first echo but nothing else. You should check the If
+Task 1-2 : Good job
+Task 3 : You have some error in the counting in the round robin task, but you seem to have understood
+
+Overall allright job, you should look through the bash script but i will approve

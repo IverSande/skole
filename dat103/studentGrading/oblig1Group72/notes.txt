@@ -1,0 +1,5 @@
+Task 0 : Remember the shebang in the start of the script. It doesnt make the files maybe the if statement doesnt work, it looks good other than that
+Task 1-2 : Good job
+Task 3 : Good job, just one to much waittime on T10
+
+Overall good job, approved

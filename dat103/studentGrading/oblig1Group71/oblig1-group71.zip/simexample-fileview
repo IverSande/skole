@@ -1,0 +1,405 @@
+
+Last login: Tue Oct  3 13:03:49 on ttys000
+zuheibalasoow@158-37-192-244 ~ % dat103-scheduler.tar
+zsh: command not found: dat103-scheduler.tar
+zuheibalasoow@158-37-192-244 ~ % $HOME
+zsh: permission denied: /Users/zuheibalasoow
+zuheibalasoow@158-37-192-244 ~ % cd /Users/zuheibalasoow/Skrivebord/dat103-scheduler 
+cd: no such file or directory: /Users/zuheibalasoow/Skrivebord/dat103-scheduler
+zuheibalasoow@158-37-192-244 ~ % cd /Users/zuheibalasoow/Desktop/dat103-scheduler
+zuheibalasoow@158-37-192-244 dat103-scheduler % ./gradlew build
+Downloading https://services.gradle.org/distributions/gradle-7.6.2-bin.zip
+...........10%............20%...........30%............40%............50%...........60%............70%............80%...........90%............100%
+
+Welcome to Gradle 7.6.2!
+
+Here are the highlights of this release:
+ - Added support for Java 19.
+ - Introduced `--rerun` flag for individual task rerun.
+ - Improved dependency block for test suites to be strongly typed.
+ - Added a pluggable system for Java toolchains provisioning.
+
+For more details see https://docs.gradle.org/7.6.2/release-notes.html
+
+Starting a Gradle Daemon (subsequent builds will be faster)
+
+> Task :test FAILED
+
+SimulationTest > testFCFS() FAILED
+    java.lang.AssertionError at SimulationTest.java:69
+
+SimulationTest > testRR() FAILED
+    java.lang.IllegalArgumentException at SimulationTest.java:51
+
+2 tests completed, 2 failed
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':test'.
+> There were failing tests. See the report at: file:///Users/zuheibalasoow/Desktop/dat103-scheduler/build/reports/tests/test/index.html
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+
+* Get more help at https://help.gradle.org
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 8.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+See https://docs.gradle.org/7.6.2/userguide/command_line_interface.html#sec:command_line_warnings
+
+BUILD FAILED in 27s
+7 actionable tasks: 7 executed
+zuheibalasoow@158-37-192-244 dat103-scheduler % ./gradlew build
+
+> Task :test FAILED
+
+SimulationTest > testFCFS() FAILED
+    java.lang.AssertionError at SimulationTest.java:69
+
+SimulationTest > testRR() FAILED
+    java.lang.IllegalArgumentException at SimulationTest.java:51
+
+2 tests completed, 2 failed
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':test'.
+> There were failing tests. See the report at: file:///Users/zuheibalasoow/Desktop/dat103-scheduler/build/reports/tests/test/index.html
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+
+* Get more help at https://help.gradle.org
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 8.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+See https://docs.gradle.org/7.6.2/userguide/command_line_interface.html#sec:command_line_warnings
+
+BUILD FAILED in 824ms
+7 actionable tasks: 1 executed, 6 up-to-date
+zuheibalasoow@158-37-192-244 dat103-scheduler % 
+zuheibalasoow@158-37-192-244 dat103-scheduler % ./gradlew build
+
+> Task :test FAILED
+
+SimulationTest > testFCFS() FAILED
+    java.lang.AssertionError at SimulationTest.java:69
+
+SimulationTest > testRR() FAILED
+    java.lang.IllegalArgumentException at SimulationTest.java:51
+
+2 tests completed, 2 failed
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':test'.
+> There were failing tests. See the report at: file:///Users/zuheibalasoow/Desktop/dat103-scheduler/build/reports/tests/test/index.html
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+
+* Get more help at https://help.gradle.org
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 8.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+See https://docs.gradle.org/7.6.2/userguide/command_line_interface.html#sec:command_line_warnings
+
+BUILD FAILED in 1s
+7 actionable tasks: 1 executed, 6 up-to-date
+zuheibalasoow@158-37-192-244 dat103-scheduler % 
+zuheibalasoow@158-37-192-244 dat103-scheduler % src/main/java/HVL/Scheduler/FCFSScheduler.java
+zsh: permission denied: src/main/java/HVL/Scheduler/FCFSScheduler.java
+zuheibalasoow@158-37-192-244 dat103-scheduler % src/test/java/HVL/Scheduler/SimulationTest.java
+zsh: permission denied: src/test/java/HVL/Scheduler/SimulationTest.java
+zuheibalasoow@158-37-192-244 dat103-scheduler % ./gradlew test --tests SimulationTest.testRR
+
+> Task :test FAILED
+
+SimulationTest > testRR() FAILED
+    java.lang.IllegalArgumentException at SimulationTest.java:51
+
+1 test completed, 1 failed
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':test'.
+> There were failing tests. See the report at: file:///Users/zuheibalasoow/Desktop/dat103-scheduler/build/reports/tests/test/index.html
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+
+* Get more help at https://help.gradle.org
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 8.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+See https://docs.gradle.org/7.6.2/userguide/command_line_interface.html#sec:command_line_warnings
+
+BUILD FAILED in 1s
+3 actionable tasks: 1 executed, 2 up-to-date
+zuheibalasoow@158-37-192-244 dat103-scheduler % ./gradlew run
+Starting a Gradle Daemon (subsequent builds will be faster)
+
+> Task :run
+T=0 Scheduled: T1 Ready: T2, T3, T4
+T=1 Scheduled: T2 Ready: T3, T4
+T=2 Scheduled: T2 Ready: T3, T4
+T=3 Scheduled: T3 Ready: T4
+T=4 Scheduled: T3 Ready: T4, T5, T6, T7
+T=5 Scheduled: T3 Ready: T4, T5, T6, T7
+T=6 Scheduled: T4 Ready: T5, T6, T7, T3
+T=7 Scheduled: T4 Ready: T5, T6, T7, T3
+T=8 Scheduled: T4 Ready: T5, T6, T7, T3
+T=9 Scheduled: T5 Ready: T6, T7, T3, T4
+T=10 Scheduled: T5 Ready: T6, T7, T3, T4
+T=11 Scheduled: T5 Ready: T6, T7, T3, T4
+T=12 Scheduled: T6 Ready: T7, T3, T4, T5
+T=13 Scheduled: T6 Ready: T7, T3, T4, T5
+T=14 Scheduled: T7 Ready: T3, T4, T5
+T=15 Scheduled: T7 Ready: T3, T4, T5
+T=16 Scheduled: T3 Ready: T4, T5, T8, T9
+T=17 Scheduled: T4 Ready: T5, T8, T9
+T=18 Scheduled: T4 Ready: T5, T8, T9
+T=19 Scheduled: T5 Ready: T8, T9
+T=20 Scheduled: T5 Ready: T8, T9
+T=21 Scheduled: T5 Ready: T8, T9
+T=22 Scheduled: T8 Ready: T9
+T=23 Scheduled: T8 Ready: T9
+T=24 Scheduled: T8 Ready: T9
+T=25 Scheduled: T9 Ready: T8
+T=26 Scheduled: T8 Ready: 
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 8.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+See https://docs.gradle.org/7.6.2/userguide/command_line_interface.html#sec:command_line_warnings
+
+BUILD SUCCESSFUL in 29s
+2 actionable tasks: 1 executed, 1 up-to-date
+zuheibalasoow@158-37-192-244 dat103-scheduler % gedit sim-example-fileview.sh
+zsh: command not found: gedit
+zuheibalasoow@158-37-192-244 dat103-scheduler % nano sim-example-fileview.sh 
+zuheibalasoow@158-37-192-244 dat103-scheduler % ./gradlew run-q
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Task 'run-q' not found in root project 'dat103-scheduler'. Some candidates are: 'run'.
+
+* Try:
+> Run gradlew tasks to get a list of available tasks.
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+
+* Get more help at https://help.gradle.org
+
+BUILD FAILED in 439ms
+zuheibalasoow@158-37-192-244 dat103-scheduler % ./gradlew run -q 
+T=0 Scheduled: T1 Ready: T2, T3, T4
+T=1 Scheduled: T2 Ready: T3, T4
+T=2 Scheduled: T2 Ready: T3, T4
+T=3 Scheduled: T3 Ready: T4
+T=4 Scheduled: T3 Ready: T4, T5, T6, T7
+T=5 Scheduled: T3 Ready: T4, T5, T6, T7
+T=6 Scheduled: T4 Ready: T5, T6, T7, T3
+T=7 Scheduled: T4 Ready: T5, T6, T7, T3
+T=8 Scheduled: T4 Ready: T5, T6, T7, T3
+T=9 Scheduled: T5 Ready: T6, T7, T3, T4
+T=10 Scheduled: T5 Ready: T6, T7, T3, T4
+T=11 Scheduled: T5 Ready: T6, T7, T3, T4
+T=12 Scheduled: T6 Ready: T7, T3, T4, T5
+T=13 Scheduled: T6 Ready: T7, T3, T4, T5
+T=14 Scheduled: T7 Ready: T3, T4, T5
+T=15 Scheduled: T7 Ready: T3, T4, T5
+T=16 Scheduled: T3 Ready: T4, T5, T8, T9
+T=17 Scheduled: T4 Ready: T5, T8, T9
+T=18 Scheduled: T4 Ready: T5, T8, T9
+T=19 Scheduled: T5 Ready: T8, T9
+T=20 Scheduled: T5 Ready: T8, T9
+T=21 Scheduled: T5 Ready: T8, T9
+T=22 Scheduled: T8 Ready: T9
+T=23 Scheduled: T8 Ready: T9
+T=24 Scheduled: T8 Ready: T9
+T=25 Scheduled: T9 Ready: T8
+T=26 Scheduled: T8 Ready: 
+zuheibalasoow@158-37-192-244 dat103-scheduler % nano sim-example-fileview.sh
+zuheibalasoow@158-37-192-244 dat103-scheduler % SimulationExample.java ./gradlew run
+zsh: command not found: SimulationExample.java
+zuheibalasoow@158-37-192-244 dat103-scheduler % SimulationExample.java run          
+zsh: command not found: SimulationExample.java
+zuheibalasoow@158-37-192-244 dat103-scheduler % nano sim-example-fileview.sh        
+zuheibalasoow@158-37-192-244 dat103-scheduler % nano sim-example-fileview.sh        
+zuheibalasoow@158-37-192-244 dat103-scheduler % SimulationExample.java run  
+zsh: command not found: SimulationExample.java
+zuheibalasoow@158-37-192-244 dat103-scheduler %  SimulationExample.java run
+zsh: command not found: SimulationExample.java
+zuheibalasoow@158-37-192-244 dat103-scheduler % javac
+Usage: javac <options> <source files>
+where possible options include:
+  @<filename>                  Read options and filenames from file
+  -Akey[=value]                Options to pass to annotation processors
+  --add-modules <module>(,<module>)*
+        Root modules to resolve in addition to the initial modules, or all modules
+        on the module path if <module> is ALL-MODULE-PATH.
+  --boot-class-path <path>, -bootclasspath <path>
+        Override location of bootstrap class files
+  --class-path <path>, -classpath <path>, -cp <path>
+        Specify where to find user class files and annotation processors
+  -d <directory>               Specify where to place generated class files
+  -deprecation
+        Output source locations where deprecated APIs are used
+  --enable-preview
+        Enable preview language features. To be used in conjunction with either -source or --release.
+  -encoding <encoding>         Specify character encoding used by source files
+  -endorseddirs <dirs>         Override location of endorsed standards path
+  -extdirs <dirs>              Override location of installed extensions
+  -g                           Generate all debugging info
+  -g:{lines,vars,source}       Generate only some debugging info
+  -g:none                      Generate no debugging info
+  -h <directory>
+        Specify where to place generated native header files
+  --help, -help, -?            Print this help message
+  --help-extra, -X             Print help on extra options
+  -implicit:{none,class}
+        Specify whether or not to generate class files for implicitly referenced files
+  -J<flag>                     Pass <flag> directly to the runtime system
+  --limit-modules <module>(,<module>)*
+        Limit the universe of observable modules
+  --module <module>(,<module>)*, -m <module>(,<module>)*
+        Compile only the specified module(s), check timestamps
+  --module-path <path>, -p <path>
+        Specify where to find application modules
+  --module-source-path <module-source-path>
+        Specify where to find input source files for multiple modules
+  --module-version <version>
+        Specify version of modules that are being compiled
+  -nowarn                      Generate no warnings
+  -parameters
+        Generate metadata for reflection on method parameters
+  -proc:{none,only}
+        Control whether annotation processing and/or compilation is done.
+  -processor <class1>[,<class2>,<class3>...]
+        Names of the annotation processors to run; bypasses default discovery process
+  --processor-module-path <path>
+        Specify a module path where to find annotation processors
+  --processor-path <path>, -processorpath <path>
+        Specify where to find annotation processors
+  -profile <profile>
+        Check that API used is available in the specified profile
+  --release <release>
+        Compile for the specified Java SE release. Supported releases: 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18
+  -s <directory>               Specify where to place generated source files
+  --source <release>, -source <release>
+        Provide source compatibility with the specified Java SE release. Supported releases: 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18
+  --source-path <path>, -sourcepath <path>
+        Specify where to find input source files
+  --system <jdk>|none          Override location of system modules
+  --target <release>, -target <release>
+        Generate class files suitable for the specified Java SE release. Supported releases: 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18
+  --upgrade-module-path <path>
+        Override location of upgradeable modules
+  -verbose                     Output messages about what the compiler is doing
+  --version, -version          Version information
+  -Werror                      Terminate compilation if warnings occur
+
+zuheibalasoow@158-37-192-244 dat103-scheduler % chmod +x run_java.sh
+chmod +x SimulationExample.class
+chmod: run_java.sh: No such file or directory
+chmod: SimulationExample.class: No such file or directory
+zuheibalasoow@158-37-192-244 dat103-scheduler % /sim-example-fileview.sh
+2
+
+zsh: no such file or directory: /sim-example-fileview.sh
+zsh: command not found: 2
+zuheibalasoow@158-37-192-244 dat103-scheduler % nano simexample-fileview sh
+zuheibalasoow@158-37-192-244 dat103-scheduler % nano simexample-fileview sh
+
+  UW PICO 5.09                            File: simexample-fileview                             Modified  
+
+
+
+#!/bin/bash
+
+monitor_java_output() {
+
+java SimulationExample > output.log &
+
+java_pid=$!
+
+ while true; do
+
+if ! ps -p $java_pid > /dev/null; then
+            echo "Java program has exited."
+            break
+        fi
+ tail -n 1 output.log
+  sleep 2
+    done
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+^G Get Help      ^O WriteOut      ^R Read File     ^Y Prev Pg       ^K Cut Text      ^C Cur Pos       
+^X Exit          ^J Justify       ^W Where is      ^V Next Pg       ^U UnCut Text    ^T To Spell      
+
+#!/bin/bash
+
+monitor_java_output() {
+
+java SimulationExample > output.log &
+
+java_pid=$!
+
+ while true; do
+
+if ! ps -p $java_pid > /dev/null; then
+            echo "Java program has exited."
+            break
+        fi
+ tail -n 1 output.log
+  sleep 2
+    done
+}
+

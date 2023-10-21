@@ -48,7 +48,8 @@ public class SimulationTest {
         }).limit(43).collect(Collectors.toList());
 
 
-        assertThat(steps,contains(
+        assertThat(steps, contains(
+            // Ved T1: ingen oppgaver er planlagt, så derfor blir T1 planlagt og de andre er klare i køen
             "T=0 Scheduled: T1 Ready: T2, T3, T4, T5",
             "T=1 Scheduled: T2 Ready: T3, T4, T5",
             "T=2 Scheduled: T2 Ready: T3, T4, T5",
@@ -91,7 +92,7 @@ public class SimulationTest {
             "T=39 Scheduled: T5 Ready: T6",
             "T=40 Scheduled: T6 Ready: ",
             "T=41 Scheduled: T6 Ready: ",
-            "T=42 Scheduled: Ready: "
+            "T=42 Scheduled: Ready: "       
         ));
     }
 

@@ -1,0 +1,5 @@
+Task 0 : Missing the last work of task 8, you regexp probably does not take in when there are no tasks in waiting
+Task 1-2 : Good job
+Task 3 : A small counting error in the round robin task but good job
+
+Maybe take a look at why your bash isnt getting all the lines, other than that good job and approved

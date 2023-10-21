@@ -1,0 +1,5 @@
+Task 0 : You write out work way to much, you have echo "work" two places in the code. Other than that Good
+Task 1-2 : Good job
+Task 3 : You have missunderstood what waiting time is, wait time is when the task is in the que and not bursting so for task 3 in RR it waits when task 1 and 2 bursts for 3 units then bursts for 3 then waits for 6 more while 4 and 5 goes then finishes with 9 as wait time
+
+Overall good enough, approved
