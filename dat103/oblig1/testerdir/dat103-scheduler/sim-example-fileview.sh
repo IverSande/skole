@@ -1,39 +1,31 @@
 #!/bin/bash
-
-# Definering av det regulære uttrykket for å matche linjer med ønsket informasjon
-info_regex='T=[0-9]+ Scheduled: T([0-9]+) Ready:((,* T[0-9]+)) '
-
-# Oppretter example-process-view-mappen dersom den ikke eksisterer
-if [ ! -d "example-process-view" ]; then
-    mkdir example-process-view
+# Directory where log files will be stored
+log_dir="example-process-view"
+# Check if the log directory exists and create it if necessary
+if [ ! -d "$log_dir" ]; then
+ mkdir "$log_dir"
 fi
-
-# Sletter tidligere loggfiler i mappen
-rm -f example-process-view/*.log
-
-# Henter ut data ved å kjøre 'gradlew run' og fanger opp linjene som skriver til standard utgang
-./gradlew run -q | while IFS= read -r line; do
-  echo "$line"
-    # Sjekker om linjen samsvarer med vårt definerte regulære uttrykk
-    if [[ $line =~ $info_regex ]]; then
-        # Deklarerer variabler for gjeldende oppgave og liste over klare oppgaver fra linjen
-        current_task="${BASH_REMATCH[1]}"
-        ready_tasks="${BASH_REMATCH[2]}"
-        
-        # Skriver ut den gjeldene oppgaven og listen over klare oppgaver
-        echo "${BASH_REMATCH[1]}"
-        echo "${BASH_REMATCH[2]}"
-        echo "$line"
-        
-        # Prosesserer listen over klare oppgaver ved å bruke sed for å trekke ut tallene (T[0-9]) 
-        # og utføre en handling for hver oppgave
-        echo "$ready_tasks" | sed -E 's/ *T([0-9]),*/\1/' | while read -r task; do
-            # Legger til en linje som indikerer at oppgaven arbeider (work) i den tilsvarende loggfilen
-            echo "work" >> "example-process-view/T${current_task}-proc.log"
-        done
-    fi
+# Clean up old log files in the directory
+rm -f "$log_dir"/*.log
+# Regular expression for extracting process information
+info_regex=' T =[0-9]\+ Scheduled : T \([0-9]\+\) Ready :\(, * T [0-9]\+\)* '
+# Start the Java program and process its output
+java SimulationExample | while IFS= read -r line; do
+ # Check if the line matches the info_regex
+ if [[ "$line" =~ $info_regex ]]; then
+ # Extract process numbers from the line
+ scheduled_process="${BASH_REMATCH[1]}"
+ ready_processes="${BASH_REMATCH[2]}"
+ # Create a log file for the scheduled process
+ log_file="$log_dir/T${scheduled_process}-proc.log"
+ # Append "work" lines to the log file for running processes
+ for process in $(sed 's/ *T\([0-9]\),*\+/\1/' <<< "$ready_processes"); do
+ if [ "$scheduled_process" == "$process" ]; then
+ echo "work" >> "$log_file"
+ fi
+ done
+ fi
 done
-
 
 
 

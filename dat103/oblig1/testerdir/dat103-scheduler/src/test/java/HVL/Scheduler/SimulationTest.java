@@ -48,52 +48,49 @@ public class SimulationTest {
         }).limit(43).collect(Collectors.toList());
 
 
-        assertThat(steps, contains(
-            // Ved T1: ingen oppgaver er planlagt, så derfor blir T1 planlagt og de andre er klare i køen
-            "T=0 Scheduled: T1 Ready: T2, T3, T4, T5",
-            "T=1 Scheduled: T2 Ready: T3, T4, T5",
-            "T=2 Scheduled: T2 Ready: T3, T4, T5",
-            "T=3 Scheduled: T3 Ready: T4, T5",
-            "T=4 Scheduled: T3 Ready: T4, T5",
-            "T=5 Scheduled: T3 Ready: T4, T5",
-            "T=6 Scheduled: T4 Ready: T5, T3",
-            "T=7 Scheduled: T4 Ready: T5, T3",
-            "T=8 Scheduled: T4 Ready: T5, T3",
-            "T=9 Scheduled: T5 Ready: T3, T4",
-            "T=10 Scheduled: T5 Ready: T3, T4",
-            "T=11 Scheduled: T5 Ready: T3, T4, T6, T7, T8, T9, T10",
-            "T=12 Scheduled: T3 Ready: T4, T6, T7, T8, T9, T10, T5",
-            "T=13 Scheduled: T4 Ready: T6, T7, T8, T9, T10, T5",
-            "T=14 Scheduled: T4 Ready: T6, T7, T8, T9, T10, T5",
-            "T=15 Scheduled: T4 Ready: T6, T7, T8, T9, T10, T5",
-            "T=16 Scheduled: T6 Ready: T7, T8, T9, T10, T5",
-            "T=17 Scheduled: T6 Ready: T7, T8, T9, T10, T5",
-            "T=18 Scheduled: T6 Ready: T7, T8, T9, T10, T5",
-            "T=19 Scheduled: T7 Ready: T8, T9, T10, T5, T6",
-            "T=20 Scheduled: T7 Ready: T8, T9, T10, T5, T6",
-            "T=21 Scheduled: T7 Ready: T8, T9, T10, T5, T6",
-            "T=22 Scheduled: T8 Ready: T9, T10, T5, T6, T7",
-            "T=23 Scheduled: T8 Ready: T9, T10, T5, T6, T7",
-            "T=24 Scheduled: T8 Ready: T9, T10, T5, T6, T7",
-            "T=25 Scheduled: T9 Ready: T10, T5, T6, T7, T8",
-            "T=26 Scheduled: T9 Ready: T10, T5, T6, T7, T8",
-            "T=27 Scheduled: T10 Ready: T5, T6, T7, T8",
-            "T=28 Scheduled: T5 Ready: T6, T7, T8",
-            "T=29 Scheduled: T5 Ready: T6, T7, T8",
-            "T=30 Scheduled: T5 Ready: T6, T7, T8",
-            "T=31 Scheduled: T6 Ready: T7, T8, T5",
-            "T=32 Scheduled: T6 Ready: T7, T8, T5",
-            "T=33 Scheduled: T6 Ready: T7, T8, T5",
-            "T=34 Scheduled: T7 Ready: T8, T5, T6",
-            "T=35 Scheduled: T7 Ready: T8, T5, T6",
-            "T=36 Scheduled: T7 Ready: T8, T5, T6",
-            "T=37 Scheduled: T8 Ready: T5, T6",
-            "T=38 Scheduled: T5 Ready: T6",
-            "T=39 Scheduled: T5 Ready: T6",
-            "T=40 Scheduled: T6 Ready: ",
-            "T=41 Scheduled: T6 Ready: ",
-            "T=42 Scheduled: Ready: "       
-        ));
+        assertThat(steps, contains("T=0 Scheduled: T1 Ready: T2, T3, T4, T5",
+		                           "T=1 Scheduled: T2 Ready: T3, T4, T5",       // T1 done
+		                           "T=2 Scheduled: T2 Ready: T3, T4, T5",
+		                           "T=3 Scheduled: T3 Ready: T4, T5",       // T2 done
+		                           "T=4 Scheduled: T3 Ready: T4, T5",
+		                           "T=5 Scheduled: T3 Ready: T4, T5",
+		                           "T=6 Scheduled: T4 Ready: T5, T3",       // T3 1 left
+		                           "T=7 Scheduled: T4 Ready: T5, T3",
+		                           "T=8 Scheduled: T4 Ready: T5, T3",
+		                           "T=9 Scheduled: T5 Ready: T3, T4",       // T4 3 left
+		                           "T=10 Scheduled: T5 Ready: T3, T4",
+		                           "T=11 Scheduled: T5 Ready: T3, T4, T6, T7, T8, T9, T10", // add time11 arrivals
+		                           "T=12 Scheduled: T3 Ready: T4, T6, T7, T8, T9, T10, T5", // T5 5 left
+		                           "T=13 Scheduled: T4 Ready: T6, T7, T8, T9, T10, T5",     // T3 done
+		                           "T=14 Scheduled: T4 Ready: T6, T7, T8, T9, T10, T5",
+		                           "T=15 Scheduled: T4 Ready: T6, T7, T8, T9, T10, T5",
+		                           "T=16 Scheduled: T6 Ready: T7, T8, T9, T10, T5",     // T4 done
+		                           "T=17 Scheduled: T6 Ready: T7, T8, T9, T10, T5",
+		                           "T=18 Scheduled: T6 Ready: T7, T8, T9, T10, T5",
+		                           "T=19 Scheduled: T7 Ready: T8, T9, T10, T5, T6",     // T6 5 left
+		                           "T=20 Scheduled: T7 Ready: T8, T9, T10, T5, T6",
+		                           "T=21 Scheduled: T7 Ready: T8, T9, T10, T5, T6",
+		                           "T=22 Scheduled: T8 Ready: T9, T10, T5, T6, T7",     // T7 3 left
+		                           "T=23 Scheduled: T8 Ready: T9, T10, T5, T6, T7",
+		                           "T=24 Scheduled: T8 Ready: T9, T10, T5, T6, T7",
+		                           "T=25 Scheduled: T9 Ready: T10, T5, T6, T7, T8",     // T8 1 left
+		                           "T=26 Scheduled: T9 Ready: T10, T5, T6, T7, T8",
+		                           "T=27 Scheduled: T10 Ready: T5, T6, T7, T8",     // T9 done
+		                           "T=28 Scheduled: T5 Ready: T6, T7, T8",      // T10 done
+		                           "T=29 Scheduled: T5 Ready: T6, T7, T8",
+		                           "T=30 Scheduled: T5 Ready: T6, T7, T8",
+		                           "T=31 Scheduled: T6 Ready: T7, T8, T5",      // T5 2 left
+		                           "T=32 Scheduled: T6 Ready: T7, T8, T5",
+		                           "T=33 Scheduled: T6 Ready: T7, T8, T5",
+		                           "T=34 Scheduled: T7 Ready: T8, T5, T6",      // T6 2 left
+		                           "T=35 Scheduled: T7 Ready: T8, T5, T6",
+		                           "T=36 Scheduled: T7 Ready: T8, T5, T6",
+		                           "T=37 Scheduled: T8 Ready: T5, T6",      // T7 done
+		                           "T=38 Scheduled: T5 Ready: T6",      // T8 done
+		                           "T=39 Scheduled: T5 Ready: T6",
+		                           "T=40 Scheduled: T6 Ready: ",     // T5 done
+		                           "T=41 Scheduled: T6 Ready: ",
+		                           "T=42 Scheduled: Ready: "));      // T6 done
     }
 
     @Test

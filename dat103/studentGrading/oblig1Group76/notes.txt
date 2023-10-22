@@ -1,0 +1,5 @@
+Task 0 : Remember this is for linux, gradle has to be ./gradlew, other than that, good job
+Task 1 - 2 : Good job
+Task 3 : You forgot some of the waiting time in the round robin scheduling but you seem to have got the point
+
+Good job overall, approved 

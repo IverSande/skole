@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="HVL.Scheduler.SimulationTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2023-10-21T21:02:46" hostname="iver-VirtualBox" time="0.024">
+<testsuite name="HVL.Scheduler.SimulationTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2023-10-22T10:04:31" hostname="iver-VirtualBox" time="0.044">
   <properties/>
-  <testcase name="testFCFS()" classname="HVL.Scheduler.SimulationTest" time="0.02"/>
+  <testcase name="testFCFS()" classname="HVL.Scheduler.SimulationTest" time="0.04"/>
   <testcase name="testRR()" classname="HVL.Scheduler.SimulationTest" time="0.004"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>

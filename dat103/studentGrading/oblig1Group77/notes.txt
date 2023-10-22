@@ -1,0 +1,5 @@
+Task 0 : You should use the ./gradlew and not the java to run the program, this might run on your operating system, but not on a standard linux distro. It looks like you have understood the task, but remember to test on your VM before submitting
+Task 1 - 2 : Good job
+Task 3 : You have some counting errors in the round robin task but almost correct
+
+Remember to read the task, you have handed in way more files than you were supposed to. Also you should count over your round robin. But it is good enough, approved
