@@ -32,19 +32,18 @@ public class FCFSScheduler implements Scheduler {
 
     
     @Override
-	public void schedule() {
-		if (selected == null) {
-			// hvis vi ikke jobber med en prosess atm
+    public void schedule() {
+    	if (selected == null) {
+			// if we're not working on a process
 			selected = ready.poll();
 			if (selected == null) {
-				// hvis det ikke er flere prosesser igjen å kjøre i køen
+				// if there's more schedules
 				return;
 			}
 			selected.start();
 		} else {
-			// hvis vi jobber med en prosess
 			if (selected.isDone()) {
-				// hvis prosessen er ferdig så stopper vi den og scheduler en ny
+				// stops finished process and schedules a new
 				selected.stop();
 				selected = null;
 				schedule();

@@ -1,0 +1,5 @@
+Task 0 : Good job, rember to use double quotes around $var to prevent problems
+Task 1-2 : Good job
+Task 3 : Slight counting error in the round robin, but you have gotten the point, good job
+
+Overall good job, approved

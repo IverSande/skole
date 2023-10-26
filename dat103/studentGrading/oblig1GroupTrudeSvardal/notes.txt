@@ -1,0 +1,5 @@
+Task 0 : Good job, you dont need the variable readyQue in this iteration of your program (maybe you just forgot to remove it), also rember double quotes around $var to prevent problems
+Task 1-2 : Good job
+Task 3 : Great job
+
+Overall very good, approved

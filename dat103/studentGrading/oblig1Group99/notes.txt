@@ -1,0 +1,5 @@
+Task 0 : You are missing a lot here, had a lot of problems running, but got it running with some changes, you write out every line with no discrimination, you need to check if the lines match the regexp and then write it out
+Task 1-2 : Good job
+Task 3 : Good job, remember to read what files you need to hand in
+
+I see you have tried on task 0, though it is very lackluster i will approve this, but i strongly recommend you to go through the script and understand and rewrite it to work

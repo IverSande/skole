@@ -1,0 +1,5 @@
+Task 0 : Good job, should have had the -r flag on read to prevent problems with potential backslashes
+Task 1-2 : good job
+Task 3 : In round robin it is not as simple as taking minus its arrival time, a lot of the tasks waits way longer because of the fact that they get moved back in the que multiple times. Take a look at what you wrote in task 2 to see how long they stay in ready
+
+Overall good job, take an extra look at round robin but overall good, approved

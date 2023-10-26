@@ -1,0 +1,6 @@
+Task 0 : You are running way to many work lines into some of your files, i fixed this by removing your loop and echoing just inside the while, this is because you already check for whether the line matches the regexp so you dont need more loops and checks inside the if. No need to cd into a directory and especially not one on your pc, this isnt universal..
+Task 1 : Good
+Task 2 : This isnt done
+Task 3 : This is both wrong and missing the gantt and a better summary
+
+You need to hand in task 2 and task 3 again the rest is ok, take some time to understand the scheduling and round robin especially.

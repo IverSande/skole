@@ -1,0 +1,5 @@
+Task 0 : Your script only runs and prints one work to a non named T-proc file. I reccomend that you use ./gradlew run or java for running the project, also no need to check state, just parse the lines and check wether they match the regexp
+Task 1 - 2: FCFS is good, i think you may have missunderstood the round robin task, you need too write out every step in the scheduling and the corresponding data, just like in the other test for FCFS
+Task 3 : I cant find any file for this task
+
+Please remember to hand in the correct files that are clearly stated in the task, you need to redoo this oblig

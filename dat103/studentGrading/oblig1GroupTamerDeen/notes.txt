@@ -1,0 +1,5 @@
+Task 0 : Great job, remember to double quote your $var to prevent problems
+Task 1-2 : Good job
+Task 3 : Some errors here, the processes after 5 have a later arrival time so they wont be before task 3 this causes some errors compounding through the task you do however seem to have understood, just be carefull about arrival times and counting correct. FCFS good
+
+Overall good job, remember to take your time with counting over, you had the answers to this task in the test in task 2 so use that as a comparison and look over one more time, but approved.

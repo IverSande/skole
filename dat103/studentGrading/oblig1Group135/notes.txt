@@ -1,0 +1,6 @@
+Task 0 : The script is not removing old files. Your if statement is not working and therefore no files are made or written to. ./gradlew run is enough, .bat is not something that works on linux. You also dont need touch.
+Task 1 : Good
+Task 2 : This is not included in the directory
+Task 3 : Good
+
+With only 2/4 with one file missing you need to resubmit, if you have task 3 that is enough because i see your thinking in task 0.
