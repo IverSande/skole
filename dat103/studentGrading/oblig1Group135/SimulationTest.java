@@ -1,7 +1,5 @@
 package HVL.Scheduler;
 
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.BeforeEach;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.contains;
 
@@ -9,6 +7,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class SimulationTest {
 
@@ -91,8 +92,9 @@ public class SimulationTest {
                 "T=39 Scheduled: T5 Ready: T6",
                 "T=40 Scheduled: T6 Ready: ",     						// T5 complete
                 "T=41 Scheduled: T6 Ready: ",
-                "T=42 Scheduled: Ready: ")); 
-    }
+                "T=42 Scheduled: Ready: "));      						// T6 complete
+}
+
 
     @Test
     public void testFCFS() {
@@ -107,7 +109,7 @@ public class SimulationTest {
         }).limit(43).collect(Collectors.toList());
 
         // Provided for Task 0
-        assertThat(steps,contains(
+        assertThat(steps, contains(
                 "T=0 Scheduled: T1 Ready: T2, T3, T4, T5",
                 "T=1 Scheduled: T2 Ready: T3, T4, T5",
                 "T=2 Scheduled: T2 Ready: T3, T4, T5",
