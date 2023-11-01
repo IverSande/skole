@@ -20,6 +20,15 @@ eval exprVar mapVar = case exprVar of
   Var a -> Map.lookup a mapVar
 
 
+eval' :: (Ord variable) => Expr variable -> Map variable Bool -> Maybe Bool
+eval' (Lit a) mapVar = Just a
+eval' exprVar mapVar = case exprVar of
+  Lit a -> Just a
+  And a b -> if(isNothing (eval a mapVar) || isNothing (eval b mapVar)) then Nothing else Just(fromJust(eval a mapVar) && fromJust(eval b mapVar))
+  Or a b -> if(isNothing (eval a mapVar) || isNothing (eval b mapVar)) then Nothing else Just(fromJust(eval a mapVar) || fromJust(eval b mapVar))
+  Var a -> Map.lookup a mapVar
+
+
 
 
 
