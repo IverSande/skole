@@ -71,7 +71,11 @@ instance Ranged CellRef where
        = Dimension { columns :: [Char]
                    , rows :: [Integer] }
     cellRange dim ran
-        = Set.fromList [(Cell a b) | a <- [column $ upperLeft ran .. column $ lowerRight ran], b <- [row $ upperLeft ran.. row $ lowerRight ran], elem a $ columns dim, elem b $ rows dim ] 
+        = Set.fromList [(Cell a b) | 
+          a <- [column $ upperLeft ran .. column $ lowerRight ran], 
+          b <- [row $ upperLeft ran.. row $ lowerRight ran], 
+          elem a $ columns dim, 
+          elem b $ rows dim ] 
 
 -- | A sample spreadsheet using Double for numeric type
 sheet1 :: Sheet Double CellRef
@@ -96,22 +100,53 @@ sheet1 =
     }
 
 sheet2 :: Sheet Double CellRef
-sheet2 = undefined
+sheet2 = Sheet
+  { name = "Sheet2", dimension = Dimension "ABC" [1,2],
+        content =
+        Map.fromList
+          [((Cell 'A' 1), Constant 12),
+           ((Cell 'B' 1), Mul (Constant 4) (Ref (Cell 'A' 2))),
+           ((Cell 'C' 1), Add (Ref (Cell 'A' 1)) (Ref (Cell 'C' 2))),
+           ((Cell 'A' 2), Constant 2),
+           ((Cell 'B' 2), Constant 4),
+           ((Cell 'C' 2), Sum (Box (Cell 'A' 1) (Cell 'C' 1)))
+          ]
+}
 
 -- | Evaluate an expression within the context of a sheet.
 -- Return Nothing if the expression cannot be evaluated.
+
 evaluate :: (Num number, Ranged cell)
-         => Sheet number cell
+  => Sheet number cell
+  -> Expression number cell
+  -> Maybe number
+evaluate sheet expr = evaluate' [] sheet expr
+
+
+
+evaluate' :: (Num number, Ranged cell)
+         => [cell]
+         -> Sheet number cell
          -> Expression number cell
          -> Maybe number
-evaluate sheet expr = 
+evaluate' visited sheet expr = 
   case expr of
     Constant a -> Just a
-    Ref a -> if(isNothing $ Map.lookup a $ content sheet) then Nothing else evaluate sheet $ fromJust $ Map.lookup a $ content sheet
-    Add a b -> if(isNothing (evaluate sheet a) || isNothing (evaluate sheet b)) then Nothing else Just(fromJust(evaluate sheet a) + fromJust(evaluate sheet b)) 
-    Mul a b -> if(isNothing (evaluate sheet a) || isNothing (evaluate sheet b)) then Nothing else Just(fromJust(evaluate sheet a) * fromJust(evaluate sheet b)) 
-    Sum range -> Just (sum $ map $ fromMaybe 0.0 $ map (\a -> evaluate sheet a) [(Cell a b) | a <- [column $ upperLeft range .. column $ lowerRight range], b <- [row $ upperLeft range.. row $ lowerRight range], elem a $ columns $ dimension sheet, elem b $ rows $ dimension sheet ])
-    --Sum range -> Just (sum $ map $ fromMaybe 0.0 $ map (\a -> evaluate sheet a) (Set.toList $ cellRange (dimension sheet) range))
+    Ref a -> if((isNothing $ Map.lookup a (content sheet) )|| elem a visited) 
+               then Nothing 
+               else evaluate' (visited ++ [a]) sheet $ fromJust $ Map.lookup a $ content sheet
+    Add a b -> if(isNothing (evaluate' visited sheet a) || isNothing (evaluate' visited sheet b)) 
+                 then Nothing 
+                 else Just(fromJust(evaluate' visited sheet a) + fromJust(evaluate' visited sheet b)) 
+    Mul a b -> if(isNothing (evaluate' visited sheet a) || isNothing (evaluate' visited sheet b)) 
+                 then Nothing 
+                 else Just(fromJust(evaluate' visited sheet a) * fromJust(evaluate' visited sheet b)) 
+    Sum range -> Just (sum $ map (\a -> fromMaybe 0 a) $ 
+                 map (\a -> evaluate' visited sheet a) (map (\a -> Ref a) $ 
+                 Set.toList $ cellRange (dimension sheet) range))
+
+
+
 
 
 -- The type of parsers
