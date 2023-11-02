@@ -13,6 +13,7 @@ import Control.Monad.State
 import System.IO
 import System.Exit
 import Data.Maybe
+import Data.List
 
 -- | A data type to represent expressions that can be evaluated to a number.
 -- This type is parametric over both the number type and the cell reference type.
@@ -141,9 +142,10 @@ evaluate' visited sheet expr =
     Mul a b -> if(isNothing (evaluate' visited sheet a) || isNothing (evaluate' visited sheet b)) 
                  then Nothing 
                  else Just(fromJust(evaluate' visited sheet a) * fromJust(evaluate' visited sheet b)) 
-    Sum range -> Just (sum $ map (\a -> fromMaybe 0 a) $ 
-                 map (\a -> evaluate' visited sheet a) (map (\a -> Ref a) $ 
-                 Set.toList $ cellRange (dimension sheet) range))
+    Sum range -> if(and $ map (\a -> isJust a) $ map (\a -> evaluate' visited sheet a) (map (\a -> Ref a) $ Set.toList $ cellRange (dimension sheet) range))
+                   then Just (sum $ map (\a -> fromMaybe 0 a) $ map (\a -> evaluate' visited sheet a) (map (\a -> Ref a) $ Set.toList $ cellRange (dimension sheet) range))
+                   else Nothing
+
 
 
 
