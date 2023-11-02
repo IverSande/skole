@@ -190,7 +190,9 @@ pChar = Parser pHead where
 
 
 exactChar :: Char -> Parser ()
-exactChar = undefined
+exactChar char = do
+  c <- pChar
+  guard (c == char)
 
 -- | Eat a single space
 pSpace :: Parser ()
@@ -214,7 +216,11 @@ keyword (k : ks) = do
 
    
 between :: Parser a -> Parser b -> Parser c -> Parser c
-between pOpen pClose pContent = undefined
+between pOpen pClose pContent = do
+    keyword <- pOpen
+    x <- pContent
+    keyword <- pClose
+    return x
 
 -- | Parse parenthesis
 inParenthesis :: Parser a -> Parser a
@@ -269,16 +275,27 @@ pConstant = Constant <$> pRead
 
 -- | Parse a cell name
 pCell :: Parser CellRef
-pCell = undefined
+pCell = do
+  column <- pChar
+  row <- pChar
+  --Need some sort of check for whether this is integer and string to return Nothing
+  if(alpha column || num row)
+  then return Nothing
+  else return $ Cell column $ (read [row] :: Integer)
+
 
 -- | Parse a cell reference
 pRef :: Parser (Expression number CellRef)
-pRef = undefined
+pRef = do
+  keyword "!"
+  x <- pCell
+  return $ Ref x
 
 
 -- | Parse a multiplication expression
 pMul :: Read number => Parser (Expression number CellRef)
 pMul = undefined
+  
 
 -- | Parse an addition expression
 pAdd :: Read number => Parser (Expression number CellRef)
@@ -287,7 +304,13 @@ pAdd = undefined
 
 -- | Parse a sum of cell refences like SUM(A1:C3)
 pSum :: Parser (Expression number CellRef)
-pSum = undefined
+pSum = do
+  keyword "SUM("
+  y <- pCell
+  keyword ":"
+  z <- pCell
+  keyword ")"
+  return $ Sum $ Box y z
 
 -- Now follows parsers for the sheet structure itself
 
