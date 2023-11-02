@@ -123,8 +123,6 @@ evaluate :: (Num number, Ranged cell)
   -> Maybe number
 evaluate sheet expr = evaluate' [] sheet expr
 
-
-
 evaluate' :: (Num number, Ranged cell)
          => [cell]
          -> Sheet number cell
