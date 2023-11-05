@@ -1,0 +1,2 @@
+nasm -f elf -F dwarf -g printsum.asm
+ld -m elf_i386 -o printsum printsum.o

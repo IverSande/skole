@@ -1,0 +1,6 @@
+Task 0 : Remember that this is supposed to run on linux, works well when i replace java with ./gradlew run
+Task 1 : good
+Task 2 : This is not included in the file
+Task 3 : You still havent quite got what the scheduling does with round robin, for instance task 2 waits for 1 time interval then bursts 2 because that is the length of the task therby having 1 in waiting time. For task 3 it waits for 3 units of time, then bursts for 3, then waits for 6 while task 4 and 5 get their time in then completes because it is the first in que and has only 1 time left to compute. Thereby having a burst time of 4 and waiting time of 9. 
+
+If you can hand in task 3 correct i will approve the oblig, this is important both for understanding scheduling overall and for your exam where there will probably be scheduling
