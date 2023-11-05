@@ -260,7 +260,10 @@ pRead =
 -- | Parse cell expressions
 pExpression :: (Read number)
             => Parser (Expression number CellRef)
-pExpression = undefined
+pExpression = do 
+  x <- pAdd
+  return x
+  
 
 -- | Parse an atomic term
 pTerm :: Read number => Parser (Expression number CellRef)
@@ -278,9 +281,8 @@ pCell :: Parser CellRef
 pCell = do
   column <- pChar
   row <- pChar
-  --Need some sort of check for whether this is integer and string to return Nothing
-  if(alpha column || num row)
-  then return Nothing
+  if((not $ alpha column )||(not $ num row))
+  then Parser $ const Nothing
   else return $ Cell column $ (read [row] :: Integer)
 
 
@@ -294,12 +296,17 @@ pRef = do
 
 -- | Parse a multiplication expression
 pMul :: Read number => Parser (Expression number CellRef)
-pMul = undefined
+pMul = do
+  x <- pOperator "*" Mul pTerm -- Need to fix this :(
+  return  x
+  
   
 
 -- | Parse an addition expression
 pAdd :: Read number => Parser (Expression number CellRef)
-pAdd = undefined
+pAdd = do
+ x <- pOperator "+" Add pMul
+ return x
 
 
 -- | Parse a sum of cell refences like SUM(A1:C3)
