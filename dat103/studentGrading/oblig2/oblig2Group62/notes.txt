@@ -1,0 +1,1 @@
+ I think something about task 2 confused me. Maybe the transformation of hexa to ascii or something... I think maybe the output it gave ended up being hexadecimal because certain values gave the same symbols in the end.
