@@ -1,0 +1,68 @@
+cabal-version:       >=1.10
+-- Initial package description 'DAT103-H21-aII-sanityCheck.cabal' generated
+--  by 'cabal init'.  For further documentation, see
+-- http://haskell.org/cabal/users-guide/
+
+name:                DAT103-H23-sanityChecks
+version:             0.1.0.0
+synopsis:            Oracle whether an assignment submission has a chance to pass
+-- description:
+-- bug-reports:
+license:             Apache-2.0
+license-file:        LICENSE
+author:              Justus Sagemüller
+maintainer:          (@) jsag $ hvl.no
+-- copyright:
+category:            Testing
+build-type:          Simple
+extra-source-files:  CHANGELOG.md
+
+library
+  exposed-modules:     Terminal.Indentation
+                       GradingRecord
+                       SanityCheckTools
+  -- other-extensions:
+  build-depends:       base >=4.12 && <4.13
+                     , containers
+                     , bytestring
+                     , transformers
+                     , text
+                     , unicode-names
+                     , filepath
+                     , directory
+                     , unliftio
+                     , temporary
+                     , process, process-extras
+                     , binary
+                     , random
+                     , simple-tar
+                     , regex-tdfa
+                     , file-embed
+                     , aeson, yaml
+  hs-source-dirs:   lib
+  default-language:    Haskell2010
+
+executable DAT103-H23-aII-sanityCheck
+  main-is:             AⅡ_Check.hs
+  -- other-modules:
+  -- other-extensions:
+  build-depends:       base >=4.12 && <4.13
+                     , DAT103-H23-sanityChecks
+                     , containers
+                     , bytestring
+                     , transformers
+                     , text
+                     , unicode-names
+                     , filepath
+                     , directory
+                     , unliftio
+                     , temporary
+                     , process, process-extras
+                     , binary
+                     , random
+                     , simple-tar
+                     , regex-tdfa
+                     , file-embed
+                     , aeson, yaml
+  hs-source-dirs:   exe
+  default-language:    Haskell2010
