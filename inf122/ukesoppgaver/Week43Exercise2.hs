@@ -9,7 +9,7 @@ import Data.Set (Set)
 import Data.Maybe
 
 type Graph n = Map n (Set n)
-newtype MyGraph n = MyGraph (Map n (Set n))
+newtype MyGraph = MyGraph (Map Integer (Set Integer))
 
 
 class IntegerGraph g where
@@ -23,14 +23,14 @@ class IntegerGraph g where
 -- show (Graph n) = show n
 
 
-instance IntegerGraph (MyGraph Integer) where 
+instance IntegerGraph (MyGraph) where 
   emptyGraph = MyGraph Map.empty
   insertNode n (MyGraph g) = MyGraph $ Map.insert n (Set.empty) g
   insertEdge n m (MyGraph g) = MyGraph $ bridge n m g 
   nodeInGraph n (MyGraph g) = Map.member n g 
   edgeInGraph n m (MyGraph g) = edge g n m
 
-instance Show n => Show (MyGraph n) where
+instance Show (MyGraph) where
   show (MyGraph graph) = show graph
 
 
