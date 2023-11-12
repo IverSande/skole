@@ -71,7 +71,7 @@ Slutt:
 
 ;---------------------------------------------------
 skrivsiffer:
-    ;Skriver ut sifferet lagret i ecx. Ingen sjekk paa verdiomraade
+    ;Skriver ut sifferet lagret i ecx. Ingen sjekk på verdiområde
     push eax
     push ebx
     push ecx
@@ -149,7 +149,7 @@ Feil:
 
 ;-----------------------------------------------------
 
-;Flytt cursor helt til venstre paa neste linje
+;Flytt cursor helt til venstre på neste linje
 nylinje:
 	push eax
 	push ebx
