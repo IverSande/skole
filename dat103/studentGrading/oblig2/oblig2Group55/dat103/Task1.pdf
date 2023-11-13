@@ -1,0 +1,20 @@
+Obligatorisk 2 dat103
+
+Task 1) 
+
+1. Linje 5-13 i programmet gjør som følger: 
+- 6 er ASCII kode for tegnet for «Carrige return» som flytter markøren til starten av linjen 
+- 7 er ASCII kode for tegnet for «line feed» som flytter markøren til neste linje. 
+- 8 er systemkall nummeret for å avslutte programmet 
+- 9 er systemkall nummeret for å lese data
+- 10 er systemkall nummeret for å skrive data
+- 11 er standard inndatafilnummer
+- 12 er standard utdatafilnummer
+- 13 er standard feilmeldingsfilnummer 
+
+2. Linje 17 reserverer en minne tilsvarende 4bytes for en variabel siffer. resb står for «reserve bytes», i dette tilfellet 4 bytes. 
+
+3. «Skriv to ensifrede tall skilt med mellomrom» er i linje 35 - 39. meldingen er lagret i en variabel meld, og lengden spesifisert av melden.   i linje 40-44 sjekkes det om input er gyldig, og skrives en error hvis ikke.   «summen av tallene må være mindre enn 10» sjekkes i linje 45-48. programmed viser ikke riktig resultat hvis tallet er større enn 10. 
+4. Etter linje 43 går programmet til linje 45 (jne slutt) hvis det er en error, og til linje 46 hvis det ikke er en error 
+5. Lessiffer blokken er fra linje 86 til 122. 
+6. Returinstruksjonen på linje 122 (ret) returnerer den siste instruksjonen som ble kjørt før en funksjon ble kalt. her er Feil på linje 113 en underrutine som kalles fra 104 og 106, og returinstruksjonen returnerer til den respektive linjen som kaller på ‘Feil’. Altså kommer det Ann på hvor i koden ‘Feil’ påropes fra.
