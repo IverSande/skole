@@ -139,13 +139,38 @@ evaluate' visited sheet expr =
                  else Just(fromJust(evaluate' visited sheet a) + fromJust(evaluate' visited sheet b)) 
     Mul a b -> if(isNothing (evaluate' visited sheet a) || isNothing (evaluate' visited sheet b)) 
                  then Nothing 
-                 else Just(fromJust(evaluate' visited sheet a) * fromJust(evaluate' visited sheet b)) 
-    Sum range -> if(and $ map (\a -> isJust a) $ map (\a -> evaluate' visited sheet a) (map (\a -> Ref a) $ Set.toList $ cellRange (dimension sheet) range))
+                 else Just(fromJust(evaluate' visited sheet a) * fromJust(evaluate' visited sheet b))
+--    Sum range -> Just (sum $ map (\a -> fromMaybe 0 a) $ map (\a -> sillyFuckingEvaluate' visited sheet a) (map (\a -> Ref a) $ Set.toList $ cellRange (dimension sheet) range))
+    Sum range -> if(and $ map (\a -> isJust a) $ map (\a -> sillyFuckingEvaluate' visited sheet a) (map (\a -> Ref a) $ Set.toList $ cellRange (dimension sheet) range))
                    then Just (sum $ map (\a -> fromMaybe 0 a) $ map (\a -> evaluate' visited sheet a) (map (\a -> Ref a) $ Set.toList $ cellRange (dimension sheet) range))
                    else Nothing
 
-
-
+sillyFuckingEvaluate' :: (Num number, Ranged cell)
+         => [cell]
+         -> Sheet number cell
+         -> Expression number cell
+         -> Maybe number
+sillyFuckingEvaluate' visited sheet expr = 
+  case expr of
+    Constant a -> Just a
+    Ref a -> if(elem a visited) 
+               then Nothing 
+               else if((isNothing $ Map.lookup a (content sheet) ))
+                 then Just 0
+                 else evaluate' (visited ++ [a]) sheet $ fromJust $ Map.lookup a $ content sheet
+    Add a b -> if(isNothing (evaluate' visited sheet a) || isNothing (evaluate' visited sheet b)) 
+                 then Nothing 
+                 else Just(fromJust(evaluate' visited sheet a) + fromJust(evaluate' visited sheet b)) 
+    Mul a b -> if(isNothing (evaluate' visited sheet a) || isNothing (evaluate' visited sheet b)) 
+                 then Nothing 
+                 else Just(fromJust(evaluate' visited sheet a) * fromJust(evaluate' visited sheet b))
+    Sum range -> if(and $ map (\a -> isJust a) $ map (\a -> sillyFuckingEvaluate' visited sheet a) (map (\a -> Ref a) $ Set.toList $ cellRange (dimension sheet) range))
+      then Just (sum $ map (\a -> fromMaybe 0 a) $ map (\a -> evaluate' visited sheet a) (map (\a -> Ref a) $ Set.toList $ cellRange (dimension sheet) range))
+      else Nothing
+--    Sum range -> if(and $ map (\a -> isJust a) $ map (\a -> evaluate' visited sheet a) (map (\a -> Ref a) $ Set.toList $ cellRange (dimension sheet) range))
+--                   then Just (sum $ map (\a -> fromMaybe 0 a) $ map (\a -> evaluate' visited sheet a) (map (\a -> Ref a) $ Set.toList $ cellRange (dimension sheet) range))
+--                   else Nothing
+   -- Sum range -> Just (sum $ map (\a -> fromMaybe 0 a) $ map (\a -> sillyFuckingEvaluate' visited sheet a) (map (\a -> Ref a) $ Set.toList $ cellRange (dimension sheet) range))
 
 
 
