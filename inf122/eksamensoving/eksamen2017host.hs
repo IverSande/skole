@@ -36,7 +36,8 @@ tap :: Num t => [(t,t)]
 tap  = [(1,2), (1,3), (2,4), (3,2), (4,3), (4,5)]
 
 naboL :: Eq t => [(t,t)] -> [(t,[t])]
-naboL (kl) = let points = removeDuplicates $ map(\(x,_) -> x ) kl in map (\x -> (x, removeDuplicates [y | y <- map snd kl, Just y == (lookup x kl)])) points
+naboL (kl) = let points = removeDuplicates $ map(\(x,_) -> x ) kl in 
+  map (\x -> (x, removeDuplicates [y | y <- map snd kl, elem y ())])) points 
 
 
 removeDuplicates :: Eq t => [t] -> [t]
