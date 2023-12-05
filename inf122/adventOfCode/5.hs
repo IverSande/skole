@@ -3,7 +3,7 @@ import Debug.Trace
 
 main =
   readFile "files/des5.txt" >>= \x ->
-  let a = computeSeedrange (head $ parseSeeds (head $ lines x)) (filter (/= []) $ parseAllLinesToMaps (tail $ lines x) []) 100000000 in
+  let a = map (\t -> computeSeedrange t  (filter (/= []) $ parseAllLinesToMaps (tail $ lines x) []) 10000000000) (parseSeeds (head $ lines x)) in
   putStrLn $ show a
 
 
@@ -11,15 +11,16 @@ main =
 --findLowestSeedLoc :: [Int] -> [[((Int,Int),(Int, Int))]] -> Int
 --findLowestSeedLoc (xs) locMap = minimum $ map (\x -> findLocationForSeed x locMap) xs
 
-findLocationForSeed :: Int -> [[((Int,Int),(Int, Int))]] -> Int
+findLocationForSeed :: Int -> [[((Int,Int),(Int, Int))]] -> Int 
 findLocationForSeed num [] = num
 findLocationForSeed num (x:xs) = findLocationForSeed (lookupInMap num x) xs
 
 computeSeedrange :: (Int, Int) -> [[((Int,Int),(Int,Int))]] -> Int -> Int
-computeSeedrange (a,b) full lowest = case a == b of
+computeSeedrange (a,b) _ _ | trace (show (a,b)) False = undefined
+computeSeedrange (a,b) full lowest = case a > b of
   True -> lowest
   False -> if findLocationForSeed a full < lowest 
-    then computeSeedrange ((a+1), b) full (findLocationForSeed a full) 
+    then computeSeedrange ((a+2), b) full (findLocationForSeed a full ) 
     else computeSeedrange ((a+1), b) full lowest
 
 --computeSeedrange :: (Int,Int) -> [[((Int,Int),(Int,Int))]] -> Int -> Bool -> Int
@@ -33,6 +34,10 @@ lookupInMap :: Int -> [((Int,Int),(Int,Int))] -> Int
 --lookupInMap val xs | trace (show xs) False = undefined
 lookupInMap val [] = val
 lookupInMap val (((a,b),(c,d)):xs) = if between a b val then c + (val - a) else lookupInMap val xs
+
+lookupInMapStep :: Int -> [((Int,Int),(Int,Int))] -> Int
+lookupInMapStep val [] = val
+lookupInMapStep val (((a,b),(c,d)):xs) = if between a b val then b else lookupInMapStep val xs
 
 
 between :: Int -> Int -> Int -> Bool
