@@ -4,7 +4,7 @@ import Debug.Trace
 main =
   readFile "files/des5.txt" >>= \x ->
   let a = map (\t -> computeSeedrange t  (filter (/= []) $ parseAllLinesToMaps (tail $ lines x) []) 10000000000) (parseSeeds (head $ lines x)) in
-  putStrLn $ show a
+  putStrLn $ show $ minimum a
 
 
 
@@ -12,6 +12,7 @@ main =
 --findLowestSeedLoc (xs) locMap = minimum $ map (\x -> findLocationForSeed x locMap) xs
 
 findLocationForSeed :: Int -> [[((Int,Int),(Int, Int))]] -> Int 
+--findLocationForSeed num (x:xs) | trace ((show num) ++ " - " ++(show $ lookupInMap num x)) False = undefined
 findLocationForSeed num [] = num
 findLocationForSeed num (x:xs) = findLocationForSeed (lookupInMap num x) xs
 
@@ -20,8 +21,19 @@ computeSeedrange (a,b) _ _ | trace (show (a,b)) False = undefined
 computeSeedrange (a,b) full lowest = case a > b of
   True -> lowest
   False -> if findLocationForSeed a full < lowest 
-    then computeSeedrange ((a+2), b) full (findLocationForSeed a full ) 
-    else computeSeedrange ((a+1), b) full lowest
+    then computeSeedrange ((a+1), b) full (findLocationForSeed a full ) 
+    else if((findLocationForSeed (a+100000) full - (a+100000)) == (findLocationForSeed a full - (a)))
+      then computeSeedrange ((a+100000), b) full lowest
+      else if((findLocationForSeed (a+10000) full - (a+10000)) == (findLocationForSeed a full - (a)))
+          then computeSeedrange ((a+10000), b) full lowest
+          else if((findLocationForSeed (a+1000) full - (a+1000)) == (findLocationForSeed a full - (a)))
+            then computeSeedrange ((a+1000), b) full lowest
+            else if((findLocationForSeed (a+100) full - (a+100)) == (findLocationForSeed a full - (a)))
+              then computeSeedrange ((a+100), b) full lowest
+                else if((findLocationForSeed (a+10) full - (a+10)) == (findLocationForSeed a full - (a)))
+                  then computeSeedrange ((a+10), b) full lowest
+                  else computeSeedrange ((a+1),b) full lowest
+
 
 --computeSeedrange :: (Int,Int) -> [[((Int,Int),(Int,Int))]] -> Int -> Bool -> Int
 --computeSeedrange _ _ s True = s
