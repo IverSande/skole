@@ -14,13 +14,25 @@ void SellCar(int* pnr, int* psell) {
     wcout << L"Enter price:";
     wcin >> *psell;
 }
-void ListCars(int* pnr, int* pbuy, int n) {
+void FindProfit(int* pbuy, int* psell, int n) {
+    int sum = 0;
     for (int i = 0; i < n; i++) {
-        wcout << L"Carnr: " << *(pnr + i) << L" Price: " << *(pbuy + i) << endl;
+        sum += (*(psell + i) - *(pbuy + i));
+    }
+    wcout << sum;
+}
+void ListCars(int* pnr, int* pbuy, int* psell, int n) {
+    for (int i = 0; i < n; i++) {
+        wcout << L"Carnr: " << *(pnr + i) << L" Price: " << *(pbuy + i) << L" SellPrice: " << *(psell + i) << endl;
     }
 }
-int FindIndex(int* pnr, int b) {
-
+int FindIndex(int* pnr, int b, int length) {
+    for (int i = 0; i < length; i++) {
+        if (*(pnr + i) == b) {
+            return i;
+        }
+    }
+    return -1;
 }
 
 int main()
@@ -51,9 +63,20 @@ int main()
                 idx++;
                 break;
             case 2: SellCar(&nr, &sell);
-                int id = find(carnr, nr)
-            case 4: ListCars(carnr, buyprice, idx);
+                if (FindIndex(carnr, nr, idx) != -1) {
+                    sellprice[FindIndex(carnr, nr, idx)] = sell;
+                }
+                else {
+                    wcout << L"This car does not exist";
+                }
                 break;
+            case 3: FindProfit(buyprice, sellprice, idx);
+                break;
+            case 4: ListCars(carnr, buyprice, sellprice, idx);
+                break;
+            case 5:
+                main();
+
         }
     } while (choice!= 0);
 
